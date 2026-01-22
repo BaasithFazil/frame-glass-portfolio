@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { productCategories } from "../data/products";
 import { useState } from "react";
-import Lightbox from "../components/Lightbox";
-import PageTransition from "../components/PageTransition";
+import Lightbox from "../components/ui/Lightbox";
+import ProductCard from "../features/ProductCard";
+import PageTransition from "../components/layout/PageTransition";
 
 export default function ProductCategory() {
   const { id } = useParams();
@@ -19,19 +20,14 @@ export default function ProductCategory() {
             {category.title}
           </h1>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {category.images.map((img, i) => (
-              <div
-                key={i}
-                className="aspect-square overflow-hidden rounded-lg cursor-pointer"
-                onClick={() => setActiveImage(img)}
-              >
-                <img
-                  src={img}
-                  alt=""
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
+          <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+
+            {category.products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onClick={() => setActiveImage(product.image)}
+              />
             ))}
           </div>
         </div>

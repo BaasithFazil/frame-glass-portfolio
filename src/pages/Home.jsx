@@ -1,8 +1,8 @@
-import SEO from "../components/SEO";
-import GoogleReviewsWidget from "../components/GoogleReviewsEmbed";
-import Hero from "../components/Hero";
-import PageTransition from "../components/PageTransition";
-import ParallaxSection from "../components/ParallaxSection";
+import SEO from "../seo/SEO";
+import GoogleReviewsWidget from "../components/sections/GoogleReviewsEmbed";
+import Hero from "../components/sections/Hero";
+import PageTransition from "../components/layout/PageTransition";
+import ParallaxSection from "../components/sections/ParallaxSection";
 
 
 function Home() {
@@ -80,13 +80,13 @@ function Home() {
   
             <div className="mt-8 space-y-2 text-gray-700">
               <p>
-                <strong>Phone:</strong> +94 XX XXX XXXX
+                <strong>Phone:</strong> +94 77 228 7228
               </p>
               <p>
-                <strong>WhatsApp:</strong> +94 XX XXX XXXX
+                <strong>WhatsApp:</strong> +94 77 228 7228
               </p>
               <p>
-                <strong>Location:</strong> Your Town, Sri Lanka
+                <strong>Location:</strong> Colombo, Sri Lanka
               </p>
             </div>
           </div>

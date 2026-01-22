@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { productCategories } from "../data/products";
-import PageTransition from "../components/PageTransition";
+import PageTransition from "../components/layout/PageTransition";
 
 export default function Products() {
   return (

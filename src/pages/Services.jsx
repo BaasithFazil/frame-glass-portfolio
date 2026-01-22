@@ -1,5 +1,5 @@
-import SEO from "../components/SEO";
-import PageTransition from "../components/PageTransition";
+import SEO from "../seo/SEO";
+import PageTransition from "../components/layout/PageTransition";
 
 function Services() {
     return (

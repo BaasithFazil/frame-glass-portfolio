@@ -1,6 +1,6 @@
-import SEO from "../components/SEO";
+import SEO from "../seo/SEO";
 import { useState } from "react";
-import PageTransition from "../components/PageTransition";
+import PageTransition from "../components/layout/PageTransition";
 
 function Portfolio() {
     const [activeImage, setActiveImage] = useState(null);

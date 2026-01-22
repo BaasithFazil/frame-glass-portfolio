@@ -1,5 +1,5 @@
-import PageTransition from "../components/PageTransition";
-import SEO from "../components/SEO";
+import PageTransition from "../components/layout/PageTransition";
+import SEO from "../seo/SEO";
 
 function Contact() {
     return (
