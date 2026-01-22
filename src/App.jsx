@@ -8,8 +8,8 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
-import Products from "./pages/products";
-import ProductCategory from "./pages/productCategory";
+import Products from "./pages/Products";
+import ProductCategory from "./pages/ProductCategory";
 
 function App() {
   const location = useLocation();
