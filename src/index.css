@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+:root {
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Source Sans Pro', system-ui, sans-serif;
+  }
+  
+  /* Global body font */
+  body {
+    font-family: var(--font-body);
+  }
+  
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+  
+  .font-body {
+    font-family: var(--font-body);
+  }
+  

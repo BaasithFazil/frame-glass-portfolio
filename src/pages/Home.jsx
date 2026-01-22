@@ -1,5 +1,7 @@
 import SEO from "../components/SEO";
 import GoogleReviewsWidget from "../components/GoogleReviewsEmbed";
+import Hero from "../components/Hero";
+
 
 function Home() {
     return (
@@ -12,8 +14,11 @@ function Home() {
         url="https://your-domain.com/"
       />
 
+            {/* NEW HERO */}
+            <Hero />
+
         {/* Hero Section */}
-        <section className="bg-gray-50 px-6 py-28 border-b border-gray-100">
+        {/* <section className="bg-gray-50 px-6 py-28 border-b border-gray-100">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-2xl">
               <h1 className="text-5xl font-bold leading-tight text-gray-900">
@@ -37,7 +42,7 @@ function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <GoogleReviewsWidget />
   
@@ -84,27 +89,6 @@ function Home() {
           </div>
         </section>
   
-        {/* Portfolio Section */}
-        <section className="bg-gray-50 px-6 py-24 border-b border-gray-100">
-          <div className="mx-auto max-w-7xl">
-            <h2 className="text-3xl font-bold text-gray-900">
-              Our Work
-            </h2>
-  
-            <p className="mt-4 max-w-2xl text-gray-600">
-              A selection of our recent framing and glass projects.
-            </p>
-  
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="aspect-square rounded-lg bg-gray-200" />
-              <div className="aspect-square rounded-lg bg-gray-200" />
-              <div className="aspect-square rounded-lg bg-gray-200" />
-              <div className="aspect-square rounded-lg bg-gray-200" />
-              <div className="aspect-square rounded-lg bg-gray-200" />
-              <div className="aspect-square rounded-lg bg-gray-200" />
-            </div>
-          </div>
-        </section>
   
         {/* Contact Section */}
         <section className="bg-gray-50 px-6 py-24 border-b border-gray-100">
