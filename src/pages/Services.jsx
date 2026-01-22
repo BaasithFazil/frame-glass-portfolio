@@ -11,7 +11,7 @@ function Services() {
         url="https://your-domain.com/portfolio"
         />
 
-        <section className="bg-gray-50 px-6 py-24 border-b border-gray-100">
+        <section className="bg-gray-50 px-6 py-28 border-b border-gray-100">
         <div className="mx-auto max-w-7xl">
           <h1 className="text-4xl font-bold text-gray-900">
             Our Services

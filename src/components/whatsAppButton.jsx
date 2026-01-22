@@ -1,6 +1,6 @@
 function WhatsAppButton() {
     const phoneNumber = "94772287228"; // 🔴 replace this
-    const message = "Hello, I would like to know more about your frame & glass services.";
+    const message = "Hi, I saw your Frame & Glass website and would like a quote for custom framing.";
   
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message

@@ -1,4 +1,5 @@
 import SEO from "../components/SEO";
+import GoogleReviewsWidget from "../components/GoogleReviewsEmbed";
 
 function Home() {
     return (
@@ -12,7 +13,7 @@ function Home() {
       />
 
         {/* Hero Section */}
-        <section className="bg-gray-50 px-6 py-24 border-b border-gray-100">
+        <section className="bg-gray-50 px-6 py-28 border-b border-gray-100">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-2xl">
               <h1 className="text-5xl font-bold leading-tight text-gray-900">
@@ -37,6 +38,8 @@ function Home() {
             </div>
           </div>
         </section>
+
+        <GoogleReviewsWidget />
   
         {/* Services Section */}
         <section className="bg-gray-50 px-6 py-24 border-b border-gray-100">
