@@ -1,9 +1,10 @@
 import SEO from "../components/SEO";
+import PageTransition from "../components/PageTransition";
 
 function Services() {
     return (
         <>
-
+<PageTransition>
         <SEO
         title="Our Work | Frame & Glass Portfolio"
         description="View our recent custom frame and glass projects."
@@ -21,6 +22,7 @@ function Services() {
           </p>
         </div>
       </section>
+      </PageTransition>
       </>
     );
   }

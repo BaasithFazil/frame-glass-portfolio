@@ -1,9 +1,11 @@
+import PageTransition from "../components/PageTransition";
 import SEO from "../components/SEO";
 
 function Contact() {
     return (
 
-        <>              
+        <>            
+        <PageTransition>  
     <SEO
     title="Our Work | Frame & Glass Portfolio"
     description="View our recent custom frame and glass projects."
@@ -26,6 +28,7 @@ function Contact() {
           </div>
         </div>
       </section>
+      </PageTransition>
       </>
     );
   }

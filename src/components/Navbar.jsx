@@ -37,6 +37,9 @@ function Navbar() {
             <NavLink to="/services" className={navLinkClass}>
               Services
             </NavLink>
+            <NavLink to="/products" className={navLinkClass}>
+              Products
+            </NavLink>
             <NavLink to="/portfolio" className={navLinkClass}>
               Portfolio
             </NavLink>

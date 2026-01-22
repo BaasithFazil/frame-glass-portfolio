@@ -1,5 +1,6 @@
 import SEO from "../components/SEO";
 import { useState } from "react";
+import PageTransition from "../components/PageTransition";
 
 function Portfolio() {
     const [activeImage, setActiveImage] = useState(null);
@@ -39,6 +40,7 @@ function Portfolio() {
       
   return (
     <>
+    <PageTransition>
       <SEO
         title="Our Work | Frame & Glass Portfolio"
         description="View our recent custom frame and glass projects."
@@ -109,6 +111,7 @@ function Portfolio() {
 )}
 
       </section>
+      </PageTransition>
     </>
   );
 }

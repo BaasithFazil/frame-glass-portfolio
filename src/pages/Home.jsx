@@ -1,12 +1,15 @@
 import SEO from "../components/SEO";
 import GoogleReviewsWidget from "../components/GoogleReviewsEmbed";
 import Hero from "../components/Hero";
+import PageTransition from "../components/PageTransition";
+import ParallaxSection from "../components/ParallaxSection";
 
 
 function Home() {
     return (
 
       <>
+      <PageTransition>
       <SEO
         title="Frame & Glass Workshop | Custom Framing & Glass Solutions"
         description="Professional custom framing and glass work for artwork, mirrors, certificates, and interiors in Sri Lanka."
@@ -16,34 +19,7 @@ function Home() {
 
             {/* NEW HERO */}
             <Hero />
-
-        {/* Hero Section */}
-        {/* <section className="bg-gray-50 px-6 py-28 border-b border-gray-100">
-          <div className="mx-auto max-w-7xl">
-            <div className="max-w-2xl">
-              <h1 className="text-5xl font-bold leading-tight text-gray-900">
-                Custom Frame & Glass Work
-              </h1>
-  
-              <p className="mt-6 text-lg text-gray-600">
-                Handcrafted framing and precision glass solutions for artwork,
-                mirrors, certificates, and interiors.
-              </p>
-  
-              <div className="mt-8 flex gap-4">
-                <button className="rounded-md bg-gray-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-black">
-
-                  View Portfolio
-                </button>
-  
-                <button className="rounded-md border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900 hover:bg-gray-100">
-                  Contact Us
-                </button>
-              </div>
-            </div>
-          </div>
-        </section> */}
-
+            <ParallaxSection />
         <GoogleReviewsWidget />
   
         {/* Services Section */}
@@ -115,6 +91,7 @@ function Home() {
             </div>
           </div>
         </section>
+        </PageTransition>
       </>
     );
   }
