@@ -5,11 +5,11 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   const navLinkClass = ({ isActive }) =>
-  `relative flex items-center py-1 text-base font-medium transition ${
-    isActive
-      ? "text-gray-900 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:bg-gray-900"
-      : "text-gray-600 hover:text-gray-900"
-  }`;
+    `relative flex items-center py-1 text-base font-medium transition focus:outline-none ${
+      isActive
+        ? "text-gray-900 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:bg-gray-900"
+        : "text-gray-600 hover:text-gray-900"
+    }`;
 
   const mobileLinkClass = ({ isActive }) =>
     isActive
@@ -18,9 +18,8 @@ function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-screen-2xl px-6">
         <div className="flex h-20 items-center justify-between">
-
           {/* Brand */}
           <Link
             to="/"
@@ -89,16 +88,32 @@ function Navbar() {
         {/* Mobile Menu */}
         {open && (
           <nav className="md:hidden border-t border-gray-200 py-4 space-y-2">
-            <NavLink to="/" className={mobileLinkClass} onClick={() => setOpen(false)}>
+            <NavLink
+              to="/"
+              className={mobileLinkClass}
+              onClick={() => setOpen(false)}
+            >
               Home
             </NavLink>
-            <NavLink to="/services" className={mobileLinkClass} onClick={() => setOpen(false)}>
+            <NavLink
+              to="/services"
+              className={mobileLinkClass}
+              onClick={() => setOpen(false)}
+            >
               Services
             </NavLink>
-            <NavLink to="/portfolio" className={mobileLinkClass} onClick={() => setOpen(false)}>
+            <NavLink
+              to="/portfolio"
+              className={mobileLinkClass}
+              onClick={() => setOpen(false)}
+            >
               Portfolio
             </NavLink>
-            <NavLink to="/contact" className={mobileLinkClass} onClick={() => setOpen(false)}>
+            <NavLink
+              to="/contact"
+              className={mobileLinkClass}
+              onClick={() => setOpen(false)}
+            >
               Contact
             </NavLink>
 

@@ -1,21 +1,28 @@
 @import "tailwindcss";
 
-:root {
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Source Sans Pro', system-ui, sans-serif;
-  }
-  
-  /* Global body font */
-  body {
-    font-family: var(--font-body);
-  }
-  
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: #000 !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
 
-  .font-heading {
-    font-family: var(--font-heading);
-  }
-  
-  .font-body {
-    font-family: var(--font-body);
-  }
-  
+:root {
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Source Sans Pro", system-ui, sans-serif;
+}
+
+/* Global body font */
+body {
+  font-family: var(--font-body);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}

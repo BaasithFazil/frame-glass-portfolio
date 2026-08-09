@@ -4,46 +4,43 @@ import Hero from "../components/sections/Hero";
 import PageTransition from "../components/layout/PageTransition";
 import ParallaxSection from "../components/sections/ParallaxSection";
 
-
 function Home() {
-    return (
-
-      <>
+  return (
+    <>
       <PageTransition>
-      <SEO
-        title="Frame & Glass Workshop | Custom Framing & Glass Solutions"
-        description="Professional custom framing and glass work for artwork, mirrors, certificates, and interiors in Sri Lanka."
-        image="/images/og-image.jpg"
-        url="https://your-domain.com/"
-      />
+        <SEO
+          title="Frame & Glass Workshop | Custom Framing & Glass Solutions"
+          description="Professional custom framing and glass work for artwork, mirrors, certificates, and interiors in Sri Lanka."
+          image="/images/og-image.jpg"
+          url="https://your-domain.com/"
+        />
 
-            {/* NEW HERO */}
-            <Hero />
-            <ParallaxSection />
+        {/* NEW HERO */}
+        <Hero />
+        <ParallaxSection />
         <GoogleReviewsWidget />
-  
+
         {/* Services Section */}
         <section className="bg-gray-50 px-6 py-24 border-b border-gray-100">
-          <div className="mx-auto max-w-7xl">
-            <h2 className="text-3xl font-bold text-gray-900">
-              Our Services
-            </h2>
-  
+          <div className="mx-auto max-w-screen-2xl">
+            <h2 className="text-3xl font-bold text-gray-900">Our Services</h2>
+
             <p className="mt-4 max-w-2xl text-gray-600">
-              We provide high-quality framing and glass services tailored to your
-              needs, using durable materials and expert craftsmanship.
+              We provide high-quality framing and glass services tailored to
+              your needs, using durable materials and expert craftsmanship.
             </p>
-  
+
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-lg border border-gray-200 p-6">
                 <h3 className="text-xl font-semibold text-gray-900">
                   Picture Framing
                 </h3>
                 <p className="mt-2 text-gray-600">
-                  Custom frames for photos, paintings, certificates, and artwork.
+                  Custom frames for photos, paintings, certificates, and
+                  artwork.
                 </p>
               </div>
-  
+
               <div className="rounded-lg border border-gray-200 p-6">
                 <h3 className="text-xl font-semibold text-gray-900">
                   Mirror & Glass Framing
@@ -52,7 +49,7 @@ function Home() {
                   Precision framing and finishing for mirrors and glass panels.
                 </p>
               </div>
-  
+
               <div className="rounded-lg border border-gray-200 p-6">
                 <h3 className="text-xl font-semibold text-gray-900">
                   Glass Cutting & Replacement
@@ -64,20 +61,17 @@ function Home() {
             </div>
           </div>
         </section>
-  
-  
+
         {/* Contact Section */}
         <section className="bg-gray-50 px-6 py-24 border-b border-gray-100">
-          <div className="mx-auto max-w-7xl">
-            <h2 className="text-3xl font-bold text-gray-900">
-              Get in Touch
-            </h2>
-  
+          <div className="mx-auto max-w-screen-2xl">
+            <h2 className="text-3xl font-bold text-gray-900">Get in Touch</h2>
+
             <p className="mt-4 max-w-2xl text-gray-600">
-              Have a project in mind? Reach out to us for custom framing and glass
-              solutions.
+              Have a project in mind? Reach out to us for custom framing and
+              glass solutions.
             </p>
-  
+
             <div className="mt-8 space-y-2 text-gray-700">
               <p>
                 <strong>Phone:</strong> +94 77 228 7228
@@ -91,10 +85,9 @@ function Home() {
             </div>
           </div>
         </section>
-        </PageTransition>
-      </>
-    );
-  }
-  
-  export default Home;
-  
+      </PageTransition>
+    </>
+  );
+}
+
+export default Home;

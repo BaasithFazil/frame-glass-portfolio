@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 export default function Hero() {
   return (
     <section className="bg-[#f7f5f2]">
-      <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-
+      <div className="max-w-screen-2xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
         {/* LEFT CONTENT */}
         <div>
           <span className="uppercase tracking-widest text-sm text-muted-foreground">
@@ -57,7 +56,6 @@ export default function Hero() {
             className="rounded-lg object-cover h-56 w-full col-span-2"
           />
         </div>
-
       </div>
     </section>
   );
