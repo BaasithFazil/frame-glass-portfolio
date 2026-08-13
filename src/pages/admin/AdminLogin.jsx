@@ -19,7 +19,15 @@ export default function AdminLogin() {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/admin/dashboard");
     } catch (err) {
-      setError(err.message || "Login failed. Please check your credentials.");
+      // Log full error for debugging and show the Firebase error code alongside the message
+      // (e.g. "auth/invalid-credential") so it's easier to identify the cause.
+      // Keep the original message as a fallback.
+      // eslint-disable-next-line no-console
+      console.error("Firebase sign-in error:", err);
+      const code = err?.code || null;
+      const message =
+        err?.message || "Login failed. Please check your credentials.";
+      setError(code ? `${message} (${code})` : message);
     } finally {
       setLoading(false);
     }
