@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Truck } from "lucide-react";
+import { motion as Motion, useScroll, useTransform } from "framer-motion";
 
 const slides = [
   {
@@ -34,6 +35,8 @@ const slides = [
 
 export default function Hero() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const { scrollY } = useScroll();
+  const backgroundY = useTransform(scrollY, [0, 850], ["0px", "150px"]);
   const slide = slides[activeSlide];
 
   useEffect(() => {
@@ -51,25 +54,27 @@ export default function Hero() {
   return (
     <section className="relative isolate min-h-[680px] overflow-hidden bg-stone-200 text-white md:min-h-[760px]">
       {slides.map((item, index) => (
-        <div
+        <Motion.div
           key={item.image}
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
-          style={{ backgroundImage: `url('${item.image}')` }}
+          className={`absolute -inset-y-40 inset-x-0 bg-cover bg-center transition-opacity duration-700 ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
+          style={{ backgroundImage: `url('${item.image}')`, y: backgroundY }}
         />
       ))}
       <div className="absolute inset-0 bg-black/45" />
 
       <button
+        type="button"
         aria-label="Previous slide"
         onClick={showPrevious}
-        className="absolute left-5 top-1/2 z-10 -translate-y-1/2 p-2 text-white/90 transition hover:text-white md:left-8"
+        className="absolute left-2 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-black/25 text-white transition hover:bg-black/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:left-5 md:left-8"
       >
         <ChevronLeft strokeWidth={1.5} size={42} />
       </button>
       <button
+        type="button"
         aria-label="Next slide"
         onClick={showNext}
-        className="absolute right-5 top-1/2 z-10 -translate-y-1/2 p-2 text-white/90 transition hover:text-white md:right-8"
+        className="absolute right-2 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-black/25 text-white transition hover:bg-black/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-5 md:right-8"
       >
         <ChevronRight strokeWidth={1.5} size={42} />
       </button>
@@ -125,11 +130,14 @@ export default function Hero() {
       <div className="absolute bottom-5 left-5 z-20 flex gap-2 md:left-8">
         {slides.map((item, index) => (
           <button
+            type="button"
             key={item.image}
             aria-label={`Show ${item.emphasis} slide`}
             onClick={() => setActiveSlide(index)}
-            className={`h-1 transition-all ${index === activeSlide ? "w-8 bg-white" : "w-4 bg-white/50 hover:bg-white"}`}
-          />
+            className="grid h-8 w-8 place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <span className={`h-1 transition-all ${index === activeSlide ? "w-7 bg-white" : "w-3 bg-white/50 hover:bg-white"}`} />
+          </button>
         ))}
       </div>
     </section>
