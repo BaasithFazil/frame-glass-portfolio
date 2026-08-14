@@ -1,133 +1,110 @@
-import { NavLink, Link } from "react-router-dom";
-import { useState } from "react";
+import { NavLink, Link, useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-
+  const [pinned, setPinned] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScrollPosition = useRef(0);
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
+  const isFloating = !isHome || pinned;
+  const isShown = !isHome ? visible : !pinned || visible;
+  const hasLightNav = isHome && !isFloating;
   const navLinkClass = ({ isActive }) =>
-    `relative flex items-center py-1 text-base font-medium transition focus:outline-none ${
-      isActive
-        ? "text-gray-900 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:bg-gray-900"
-        : "text-gray-600 hover:text-gray-900"
-    }`;
+    `relative py-2 text-xs font-bold uppercase tracking-[0.24em] transition ${hasLightNav ? "text-white hover:text-white/70" : "text-zinc-600 hover:text-zinc-950"} ${isActive && !hasLightNav ? "after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-zinc-950" : ""}`;
 
-  const mobileLinkClass = ({ isActive }) =>
-    isActive
-      ? "block py-3 text-gray-900 font-medium"
-      : "block py-3 text-gray-700 hover:text-gray-900";
+  useEffect(() => {
+    const updateNavbar = () => {
+      const currentPosition = window.scrollY;
+      setPinned(currentPosition > 120);
+      setVisible(
+        currentPosition < 16 || currentPosition < lastScrollPosition.current,
+      );
+      lastScrollPosition.current = currentPosition;
+    };
+
+    updateNavbar();
+    window.addEventListener("scroll", updateNavbar, { passive: true });
+    return () => window.removeEventListener("scroll", updateNavbar);
+  }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
-      <div className="mx-auto max-w-screen-2xl px-6">
-        <div className="flex h-20 items-center justify-between">
-          {/* Brand */}
+    <>
+      {!isHome && <div className="h-[136px]" aria-hidden="true" />}
+      <header className={`${isFloating ? "fixed inset-x-0 top-0 z-50 border-b border-zinc-200 bg-white/95 text-zinc-900 shadow-sm backdrop-blur" : "absolute inset-x-0 top-0 z-30 text-white"} ${isShown ? "translate-y-0" : "-translate-y-full"} transition-transform duration-500 ease-out`}>
+      <div className="h-10 bg-white px-4 text-center text-[11px] font-semibold tracking-[0.11em] text-zinc-900 sm:text-xs">
+        <p className="flex h-full items-center justify-center">
+          TRUSTED EXPERTS IN CUSTOM FRAMING &amp; MIRRORS
+        </p>
+      </div>
+      <div className="mx-auto max-w-screen-2xl px-6 lg:px-9">
+        <div className="flex h-24 items-center justify-between">
           <Link
             to="/"
-            className="font-heading text-xl tracking-wide text-gray-900"
+            className="text-2xl font-black leading-[0.78] tracking-tight sm:text-3xl"
           >
-            Frame & Glass
+            FRAME<span className="font-light">/</span>
+            <br />
+            GLASS<span className="font-light">.LK</span>
           </Link>
-
-          {/* Desktop Nav */}
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-8 lg:flex xl:gap-11">
             <NavLink to="/" className={navLinkClass}>
               Home
             </NavLink>
             <NavLink to="/services" className={navLinkClass}>
-              Services
+              Our Services
             </NavLink>
             <NavLink to="/products" className={navLinkClass}>
-              Products
+              Shop
             </NavLink>
             <NavLink to="/portfolio" className={navLinkClass}>
-              Portfolio
+              Gallery
             </NavLink>
             <NavLink to="/contact" className={navLinkClass}>
-              Contact
+              Contact Us
             </NavLink>
-
-            {/* CTA */}
-            <Link
-              to="/contact"
-              className="ml-4 rounded-md bg-gray-900 px-5 py-2 text-sm font-medium text-white hover:bg-black transition"
-            >
-              Get a Quote
-            </Link>
           </nav>
-
-          {/* Mobile Button */}
+          <Link
+            to="/contact"
+            className={`hidden border px-5 py-3 text-xs font-bold uppercase tracking-widest transition sm:block ${hasLightNav ? "border-white text-white hover:bg-white hover:text-zinc-900" : "border-zinc-900 hover:bg-zinc-900 hover:text-white"}`}
+          >
+            Get a Quote
+          </Link>
           <button
-            className="md:hidden"
+            className="lg:hidden"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
-            <svg
-              className="h-6 w-6 text-gray-900"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              {open ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            {open ? <X /> : <Menu />}
           </button>
         </div>
-
-        {/* Mobile Menu */}
         {open && (
-          <nav className="md:hidden border-t border-gray-200 py-4 space-y-2">
-            <NavLink
-              to="/"
-              className={mobileLinkClass}
-              onClick={() => setOpen(false)}
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/services"
-              className={mobileLinkClass}
-              onClick={() => setOpen(false)}
-            >
-              Services
-            </NavLink>
-            <NavLink
-              to="/portfolio"
-              className={mobileLinkClass}
-              onClick={() => setOpen(false)}
-            >
-              Portfolio
-            </NavLink>
-            <NavLink
-              to="/contact"
-              className={mobileLinkClass}
-              onClick={() => setOpen(false)}
-            >
-              Contact
-            </NavLink>
-
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
-              className="block rounded-md bg-gray-900 px-4 py-3 text-center text-sm font-medium text-white hover:bg-black transition"
-            >
-              Get a Quote
-            </Link>
+          <nav
+            className={`border-t py-4 lg:hidden ${hasLightNav ? "border-white/30 bg-zinc-950/90" : "border-zinc-200"}`}
+          >
+            {[
+              ["/", "Home"],
+              ["/services", "Our Services"],
+              ["/products", "Shop"],
+              ["/portfolio", "Gallery"],
+              ["/contact", "Contact Us"],
+            ].map(([to, label]) => (
+              <NavLink
+                key={to}
+                to={to}
+                onClick={() => setOpen(false)}
+                className="block px-2 py-3 text-sm font-semibold"
+              >
+                {label}
+              </NavLink>
+            ))}
           </nav>
         )}
       </div>
-    </header>
+      </header>
+    </>
   );
 }
 

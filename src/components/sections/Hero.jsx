@@ -1,61 +1,136 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, Truck } from "lucide-react";
+
+const slides = [
+  {
+    image: "/images/hero/parallax-frame.jpg",
+    eyebrow: "BESPOKE DETAILS FOR YOUR SPACE",
+    title: "Custom",
+    emphasis: "Mirror Framing",
+    description:
+      "Bespoke frames, precision glass, and mirrors that make every room feel complete.",
+    link: "/services",
+  },
+  {
+    image: "/images/portfolio/frame-1.jpg",
+    eyebrow: "MADE TO DISPLAY WHAT MATTERS",
+    title: "Picture",
+    emphasis: "Framing",
+    description:
+      "Thoughtfully crafted frames for artwork, photos, certificates, and treasured memories.",
+    link: "/portfolio",
+  },
+  {
+    image: "/images/portfolio/glass-1.jpg",
+    eyebrow: "PRECISION CUT FOR EVERY PROJECT",
+    title: "Glass",
+    emphasis: "Solutions",
+    description:
+      "Reliable glass cutting, replacement, and finishing for homes, workspaces, and interiors.",
+    link: "/services",
+  },
+];
 
 export default function Hero() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const slide = slides[activeSlide];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % slides.length);
+    }, 6000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const showPrevious = () =>
+    setActiveSlide((current) => (current - 1 + slides.length) % slides.length);
+  const showNext = () =>
+    setActiveSlide((current) => (current + 1) % slides.length);
+
   return (
-    <section className="bg-[#f7f5f2]">
-      <div className="max-w-screen-2xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-        {/* LEFT CONTENT */}
-        <div>
-          <span className="uppercase tracking-widest text-sm text-muted-foreground">
-            Crafted with Precision
-          </span>
+    <section className="relative isolate min-h-[680px] overflow-hidden bg-stone-200 text-white md:min-h-[760px]">
+      {slides.map((item, index) => (
+        <div
+          key={item.image}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${index === activeSlide ? "opacity-100" : "opacity-0"}`}
+          style={{ backgroundImage: `url('${item.image}')` }}
+        />
+      ))}
+      <div className="absolute inset-0 bg-black/45" />
 
-          <h1 className="font-heading mt-4 text-4xl md:text-5xl lg:text-6xl leading-tight">
-            Custom Frame & Glass Work
-            <br />
-            <span className="text-neutral-600">Made to Last</span>
-          </h1>
+      <button
+        aria-label="Previous slide"
+        onClick={showPrevious}
+        className="absolute left-5 top-1/2 z-10 -translate-y-1/2 p-2 text-white/90 transition hover:text-white md:left-8"
+      >
+        <ChevronLeft strokeWidth={1.5} size={42} />
+      </button>
+      <button
+        aria-label="Next slide"
+        onClick={showNext}
+        className="absolute right-5 top-1/2 z-10 -translate-y-1/2 p-2 text-white/90 transition hover:text-white md:right-8"
+      >
+        <ChevronRight strokeWidth={1.5} size={42} />
+      </button>
 
-          <p className="mt-6 text-lg text-muted-foreground max-w-xl">
-            Handcrafted picture frames, mirror installations, and precision
-            glass cutting — trusted by local customers for quality and care.
+      <div className="relative z-10 mx-auto flex min-h-[680px] max-w-screen-2xl items-center justify-center px-6 pb-20 pt-36 text-center md:min-h-[760px]">
+        <div
+          key={activeSlide}
+          className="max-w-3xl animate-[fade-in_500ms_ease-out]"
+        >
+          <p className="mb-5 text-xs font-semibold tracking-[0.3em] text-white/90">
+            {slide.eyebrow}
           </p>
-
-          <div className="mt-8 flex flex-wrap gap-4">
+          <h1 className="text-5xl font-black leading-[0.9] tracking-tight drop-shadow-sm sm:text-6xl md:text-7xl lg:text-8xl">
+            {slide.title}
+            <span className="mt-2 block text-white">{slide.emphasis}</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/95 md:text-lg">
+            {slide.description}
+          </p>
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <Link
+              to={slide.link}
+              className="min-w-36 bg-black px-7 py-4 text-sm font-bold text-white transition hover:bg-zinc-800"
+            >
+              Learn More
+            </Link>
             <Link
               to="/contact"
-              className="px-6 py-3 bg-black text-white rounded-md hover:bg-neutral-800 transition"
+              className="min-w-40 border border-white bg-white px-7 py-4 text-sm font-bold text-black transition hover:bg-transparent hover:text-white"
             >
-              Get a Quote
-            </Link>
-
-            <Link
-              to="/portfolio"
-              className="px-6 py-3 border border-black rounded-md hover:bg-black hover:text-white transition"
-            >
-              View Our Work
+              Upload your Photo
             </Link>
           </div>
         </div>
+      </div>
 
-        {/* RIGHT IMAGES */}
-        <div className="grid grid-cols-2 gap-4">
-          <img
-            src="/images/portfolio/frame-1.jpg"
-            alt="Custom picture frame"
-            className="rounded-lg object-cover h-56 w-full"
+      <div className="absolute bottom-0 left-1/2 z-20 flex w-[min(92%,510px)] -translate-x-1/2 items-center justify-between border border-white/30 bg-white px-6 py-3 text-zinc-950 shadow-lg sm:px-9">
+        <span className="text-xl font-black leading-none sm:text-2xl">
+          ISLANDWIDE
+          <br />
+          DELIVERY
+        </span>
+        <span className="flex items-center gap-2 text-right text-sm font-black leading-none text-zinc-950 sm:text-base">
+          FAST
+          <br />
+          DELIVERY{" "}
+          <Truck
+            className="h-12 w-12 text-zinc-800 sm:h-14 sm:w-14"
+            strokeWidth={1.7}
           />
-          <img
-            src="/images/portfolio/glass-1.jpg"
-            alt="Glass cutting work"
-            className="rounded-lg object-cover h-56 w-full"
+        </span>
+      </div>
+      <div className="absolute bottom-5 left-5 z-20 flex gap-2 md:left-8">
+        {slides.map((item, index) => (
+          <button
+            key={item.image}
+            aria-label={`Show ${item.emphasis} slide`}
+            onClick={() => setActiveSlide(index)}
+            className={`h-1 transition-all ${index === activeSlide ? "w-8 bg-white" : "w-4 bg-white/50 hover:bg-white"}`}
           />
-          <img
-            src="/images/portfolio/frame-2.jpg"
-            alt="Mirror framing"
-            className="rounded-lg object-cover h-56 w-full col-span-2"
-          />
-        </div>
+        ))}
       </div>
     </section>
   );

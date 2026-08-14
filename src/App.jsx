@@ -19,52 +19,53 @@ import ProductForm from "./pages/admin/ProductForm";
 function App() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
-
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       {!isAdminRoute && <Navbar />}
 
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          {/* Public Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:id" element={<ProductCategory />} />
+      <main className="flex-1">
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:id" element={<ProductCategory />} />
 
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route
-            path="/admin/dashboard"
-            element={
-              <ProtectedRoute>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/add-product"
-            element={
-              <ProtectedRoute>
-                <ProductForm />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/edit-product/:id"
-            element={
-              <ProtectedRoute>
-                <ProductForm />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </AnimatePresence>
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admin/dashboard"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/add-product"
+              element={
+                <ProtectedRoute>
+                  <ProductForm />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/edit-product/:id"
+              element={
+                <ProtectedRoute>
+                  <ProductForm />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </AnimatePresence>
+      </main>
 
       {!isAdminRoute && <Footer />}
-    </>
+    </div>
   );
 }
 

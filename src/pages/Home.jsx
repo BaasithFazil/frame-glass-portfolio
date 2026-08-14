@@ -1,10 +1,33 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import SEO from "../seo/SEO";
 import GoogleReviewsWidget from "../components/sections/GoogleReviewsEmbed";
 import Hero from "../components/sections/Hero";
 import PageTransition from "../components/layout/PageTransition";
-import ParallaxSection from "../components/sections/ParallaxSection";
+import { getAllProducts } from "../lib/productService";
+import { productCategories } from "../data/products";
 
 function Home() {
+  const [products, setProducts] = useState(() =>
+    productCategories.flatMap((category) => category.products).slice(0, 4)
+  );
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadProducts() {
+      const liveProducts = await getAllProducts();
+      if (isMounted) {
+        setProducts(liveProducts.length ? liveProducts.slice(0, 4) : productCategories.flatMap((category) => category.products).slice(0, 4));
+      }
+    }
+
+    loadProducts();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <>
       <PageTransition>
@@ -15,9 +38,34 @@ function Home() {
           url="https://your-domain.com/"
         />
 
-        {/* NEW HERO */}
         <Hero />
-        <ParallaxSection />
+
+        <section className="bg-white px-6 py-20 md:py-28">
+          <div className="mx-auto max-w-screen-2xl">
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.24em] text-zinc-500">Made for your home</p>
+                <h2 className="mt-3 text-4xl font-black tracking-tight text-zinc-950 md:text-5xl">Featured Products</h2>
+              </div>
+              <Link to="/products" className="border border-zinc-950 px-5 py-3 text-xs font-bold uppercase tracking-[0.16em] text-zinc-950 transition hover:bg-zinc-950 hover:text-white">View all products</Link>
+            </div>
+
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {products.map((product) => (
+                <Link key={product.id} to="/products" className="group block">
+                  <div className="aspect-square overflow-hidden bg-zinc-100">
+                    <img src={product.image} alt={product.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                  </div>
+                  <div className="mt-4 flex items-start justify-between gap-3">
+                    <h3 className="text-base font-bold text-zinc-950">{product.title}</h3>
+                    {product.price && <p className="shrink-0 text-sm font-semibold text-zinc-600">Rs. {Number(product.price).toLocaleString()}</p>}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <GoogleReviewsWidget />
 
         {/* Services Section */}
